@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { BiSolidEdit } from 'react-icons/bi'
-import { Link } from 'react-router-dom';
+// import { BiSolidEdit } from 'react-icons/bi'
+// import { Link } from 'react-router-dom';
 
 const SemesterRow = (props) => {
     const [myData, setMyData] = useState({});

@@ -2,20 +2,18 @@ import React from 'react'
 
 const SubjectDisplay = (props) => {
 
-    const handleClick =(i)=> {
-        
-    }
+
 
     return (
         <div className='px-2 w-full'>
-            <div className={`${props.i == 0 ? 'flex mt-7' : 'hidden'} w-full justify-between items-center p-3 my-1 `}>
+            <div className={`${props.i === 0 ? 'flex mt-7' : 'hidden'} w-full justify-between items-center p-3 my-1 `}>
                 <div className='flex justify-center items-center'>
 
                     <h1 className={` text-xl font-medium`}>{props.course.toUpperCase()}</h1>
                 </div>
             </div>
             <div id={`my-table-${props.i}`} className='my_table w-full border transition-all '>
-                {props.i == 0 ? <div className='my_table_head flex border-2 border-black font-medium '>
+                {props.i === 0 ? <div className='my_table_head flex border-2 border-black font-medium '>
                     <div className="my_th px-4 py-2 w-[20%] border-r-2 border-black flex justify-center items-center ">
                         <span>Semester / Course(Division)</span>
                     </div>
