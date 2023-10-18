@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.active {
+    color: cyan;
+    font-weight: 900;
+}
+
+/* #loading-container {
+    position: absolute;
+    width: 100vw;
+    height: 4px;
+    top: 0;
+    left: 0;
+    background-color: aliceblue;
+}
+
+.loading {
+    position: relative;
+    background-color: blue;
+    height: 100%;
+    width: 10%;
+    animation-name: loadingB;
+    animation-iteration-count: infinite;
+    transition: all .5s;
+}
+@keyframes loadingB {
+    from {
+        position: relative;
+        transform: translateX(0px);
+    }
+    100% {
+        position: relative;
+        transform: translateX(1000px);
+    }
+} */

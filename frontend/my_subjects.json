@@ -1,0 +1,59 @@
+{
+    "bcom": {
+        "sem1": {
+            "honours": [
+                "AECC1.1CHG",
+                "CC1.1CG",
+                "CC1.1CH",
+                "CC1.1CHG",
+                "CC1.2CHG",
+                "GE1.1CHG",
+                "CMEC",
+                "HINL",
+                "BNGL",
+                "ENGL"
+            ],
+            "general": [
+                "AECC1.1CHG",
+                "CC1.1CG",
+                "CC1.1CH",
+                "CC1.1CHG",
+                "CC1.2CHG",
+                "GE1.1CHG",
+                "CMEC",
+                "HINL",
+                "BNGL",
+                "ENGL"
+            ]
+        },
+        "sem2": {
+            "honours": [],
+            "general": []
+        },
+        "sem3": {
+            "honours": [],
+            "general": []
+        },
+        "sem4": {
+            "honours": [],
+            "general": []
+        },
+        "sem5": {
+            "honours": [],
+            "general": []
+        },
+        "sem6": {
+            "honours": [
+                "SEC6.1CHG",
+                "CC6.1CH",
+                "DSE6.1AH",
+                "DSE6.2AH"
+            ],
+            "general": [
+                "SEC6.1CHG",
+                "DSE6.1AG",
+                "DSE6.2AG"
+            ]
+        }
+    }
+}
