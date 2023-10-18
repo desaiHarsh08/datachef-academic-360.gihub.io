@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import EditSubjectRow from './EditSubjectRow';
 
 const EditStudent = () => {
 
@@ -8,7 +7,7 @@ const EditStudent = () => {
 
   // const host = process.env.REACT_APP_BACKEND_URL;
 
-
+// eslint-disable-next-line
   const [rows, setRows] = useState([]);
 
   const [subjects, setSubjects] = useState([]);
