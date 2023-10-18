@@ -3,9 +3,7 @@ import React, { useEffect, useState } from 'react'
 const EditSubjectRow = ({ obj, updateSubject  }) => {
 
     const [myData, setMyData] = useState(obj);
-    useEffect(() => {
-        console.log(myData)
-    }, []);
+
 
 
 

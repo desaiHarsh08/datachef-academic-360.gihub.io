@@ -11,21 +11,13 @@ import EditStudent from "./components/EditStudent";
 import SearchStudent from "./components/SearchStudent";
 import DeleteStudent from "./components/DeleteStudent";
 import Settings from "./components/Settings";
-import { useEffect } from "react";
-import { gapi } from 'gapi-script'
+
 
 function App() {
 
-  const clientId = process.env.REACT_APP_CLIENT_ID;
 
-  useEffect(() => {
-    function start() {
-      gapi.client.init({
-        clientId: clientId,
-        scope: ""
-      })
-    }
-  }, [])
+
+
   
   return (
     <Router>

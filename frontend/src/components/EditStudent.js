@@ -6,15 +6,15 @@ const EditStudent = () => {
 
   let navigate = useNavigate();
 
-  const host = process.env.REACT_APP_BACKEND_URL;
+  // const host = process.env.REACT_APP_BACKEND_URL;
 
 
   const [rows, setRows] = useState([]);
 
   const [subjects, setSubjects] = useState([]);
 
-  const [myFullMarks, setMyFullMarks] = useState(0);
-  const [myMarksObtained, setMyMarksObtained] = useState(0);
+  // const [myFullMarks, setMyFullMarks] = useState(0);
+  // const [myMarksObtained, setMyMarksObtained] = useState(0);
   let obj = JSON.parse(localStorage.getItem('obj'));
   const [myData, setMyData] = useState(JSON.parse(localStorage.getItem('obj')));
 
@@ -33,7 +33,7 @@ const EditStudent = () => {
     console.log(subjects)
 
 
-
+// eslint-disable-next-line
   }, []);
 
 
@@ -109,32 +109,32 @@ const EditStudent = () => {
     // arr = subjects;
     // console.log(arr)
 
-    let tmpRowsArr = [];
-    for (let i = 0; i < arr.length; i++) {
+    // let tmpRowsArr = [];
+    // for (let i = 0; i < arr.length; i++) {
 
-      const updateSubjectInArr = (updatedObj) => {
-        const updatedArr = subjects.map((subject) => {
-          if (subject.subjectName === updatedObj.subjectName) {
-            return updatedObj; // Update the specific object
-          }
-          return subject;
-        });
+    //   const updateSubjectInArr = (updatedObj) => {
+    //     const updatedArr = subjects.map((subject) => {
+    //       if (subject.subjectName === updatedObj.subjectName) {
+    //         return updatedObj; // Update the specific object
+    //       }
+    //       return subject;
+    //     });
     
-        arr = updatedArr;
-      };
+    //     arr = updatedArr;
+    //   };
 
 
-      tmpRowsArr.push(
-        <EditSubjectRow obj={arr[i]} updateSubject={updateSubjectInArr} />
-      );
-    }
+    //   tmpRowsArr.push(
+    //     <EditSubjectRow obj={arr[i]} updateSubject={updateSubjectInArr} />
+    //   );
+    // }
 
-    console.log("arr: ", arr)
+    // console.log("arr: ", arr)
 
-    setRows(tmpRowsArr)
+    // setRows(tmpRowsArr)
 
 
-    return arr;
+    // return arr;
 
   }
 
