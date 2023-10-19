@@ -4,12 +4,14 @@ import { useNavigate } from 'react-router-dom'
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
 import md5 from 'md5';
+import Loading from '../components/Loading';
 
 
 const Home = () => {
 
   const host = process.env.REACT_APP_BACKEND_URL;
 
+  const [loading, setLoading] = useState(false);
 
   let navigate = useNavigate();
 
@@ -35,7 +37,7 @@ const Home = () => {
     const emailHash = md5(cred.email);
     const avatarUrl = `https://www.gravatar.com/avatar/${emailHash}?d=identicon`;
     localStorage.setItem('picture', avatarUrl);
-
+    setLoading(true)
     const res = await fetch(`${host}/api/auth/login`, {
       method: 'POST',
       headers: {
@@ -46,7 +48,7 @@ const Home = () => {
 
     const data = await res.json();
     console.log(data);
-
+setLoading(false);
     if (data) {
       localStorage.setItem('auth-token', data.authToken);
       localStorage.setItem('name', data.name);
@@ -55,6 +57,7 @@ const Home = () => {
   }
 
   const handleSuccess = async (credentialResponse) => {
+    setLoading(true);
     console.log(credentialResponse)
     const userObject = jwt_decode(credentialResponse.credential);
     console.log(userObject);
@@ -72,6 +75,7 @@ const Home = () => {
       body: JSON.stringify({ email: userObject.email })
     });
     const data = await res.json();
+    setLoading(false);
     // console.log(data.)
     if (data.authToken) {
       localStorage.setItem('auth-token', data.authToken);
@@ -89,8 +93,9 @@ const Home = () => {
 
   return (
     <>
-      <div className='w-full h-screen bg-[#5c405c] flex flex-col justify-center items-center '>
-        <div className="rows w-full px-2 sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col justify-center items-center">
+    {loading===true? <Loading />: ''}
+      <div className='w-full h-screen  bg-[#5c405c] flex flex-col justify-center items-center '>
+        <div className="rows w-full px-4 sm:w-[90%] md:w-[75%] lg:w-[50%] flex flex-col gap-3 justify-center items-center">
           <div id="row1" className='text-white flex gap-2 flex-col justify-center items-center w-3/4' >
             <h1 className='text-3xl font-semibold flex gap-3  items-center '>
               <BsFillClipboardDataFill />
@@ -136,13 +141,16 @@ const Home = () => {
             {/* <LoginB */}
           </div>
         </div>
-      </div>
 
 
-      {/* Footer */}
-      <div className='absolute w-full bottom-0 flex justify-center items-center ' >
+        {/* Footer */}
+      {/* <div className='mt-3 w-full bottom-0 flex justify-center items-center ' >
         <p className='text-white p-3 '>This is sample footer text. All Rigths Reserved</p>
+      </div> */}
       </div>
+
+
+      
     </>
   )
 }

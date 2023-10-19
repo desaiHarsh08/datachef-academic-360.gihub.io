@@ -219,7 +219,7 @@ const AddStudent = () => {
             // console.log(subjectArr);
             return subjectArr;
         }
-    }, [studentMarksheet]);
+    }, [studentMarksheet, fdata]);
 
 
     const extractSubjects = (data, stream, semester, course) => {
@@ -788,7 +788,7 @@ const AddStudent = () => {
 
 
             <div id='add-box' className='transition-all duration-150 translate-y-[1000px] w-full absolute top-0 bottom-0 right-0 left-0  flex justify-center items-center  shadow-xl ' >
-                <div className='bg-white text-black border-2 z-30 p-7 border-black w-[85%]  '>
+                <div className='bg-white text-black border-2 z-30 p-7 border-black w-[85%] h-[89vh] overflow-y-auto  '>
                     <div id="close-container" onClick={handleAddBox} className='flex justify-end w-full cursor-pointer' >
                         <div>
                             <div className='w-7 translate-y-1 h-1 bg-black -rotate-45 rounded-md'></div>
@@ -810,50 +810,50 @@ const AddStudent = () => {
 
                                     </div>
                                 </div>
-                                <div className="my_fullmarks my-2 space-x-2 flex">
-                                    <div className='w-1/5'>
+                                <div className="my_fullmarks my-2 sm:space-x-2 flex flex-col md:flex-row">
+                                    <div className='sm:w-1/5'>
                                         <label htmlFor="fullMarks">Full Marks</label>
                                     </div>
                                     <input type="number" name='fullMarks' id='my_fullMarks' className='border-2 border-black px-4 py-2 rounded-md' />
                                 </div>
-                                <div className="my_year1 my-2 space-x-2 flex">
-                                    <div className='w-1/5'>
+                                <div className="my_year1 my-2 sm:space-x-2 flex flex-col md:flex-row">
+                                    <div className='sm:w-1/5'>
                                         <label htmlFor="year1">Year1</label>
                                     </div>
                                     <input type="number" name='year1' id='my_year1' className='border-2 border-black px-4 py-2 rounded-md' />
                                 </div>
-                                <div className="my_year2 my-2 space-x-2 flex">
-                                    <div className='w-1/5'>
+                                <div className="my_year2 my-2 sm:space-x-2 flex flex-col md:flex-row">
+                                    <div className='sm:w-1/5'>
                                         <label htmlFor="year2">Year2</label>
                                     </div>
                                     <input type="number" name='year2' id='my_year2' className='border-2 border-black px-4 py-2 rounded-md' />
                                 </div>
-                                <div className="my_internal my-2 space-x-2 flex">
-                                    <div className='w-1/5'>
+                                <div className="my_internal my-2 sm:space-x-2 flex flex-col md:flex-row">
+                                    <div className='sm:w-1/5'>
                                         <label htmlFor="internalMarks">Internal Marks</label>
                                     </div>
                                     <input type="number" name='internalMarks' id='my_internalMarks' className='border-2 border-black px-4 py-2 rounded-md' />
                                 </div>
-                                <div className="my_practical my-2 space-x-2 flex">
-                                    <div className='w-1/5'>
+                                <div className="my_practical my-2 sm:space-x-2 flex flex-col md:flex-row">
+                                    <div className='sm:w-1/5'>
                                         <label htmlFor="practicalMarks">Practical Marks</label>
                                     </div>
                                     <input type="number" name='practicalMarks' id='my_practicalMarks' className='border-2 border-black px-4 py-2 rounded-md' />
                                 </div>
-                                <div className="my_practical my-2 space-x-2 flex">
-                                    <div className='w-1/5'>
+                                <div className="my_practical my-2 sm:space-x-2 flex flex-col md:flex-row">
+                                    <div className='sm:w-1/5'>
                                         <label htmlFor="theoryMarks">Theory Marks</label>
                                     </div>
                                     <input type="number" name='theoryMarks' id='my_theoryMarks' className='border-2 border-black px-4 py-2 rounded-md' />
                                 </div>
-                                <div className="my_credit my-2 space-x-2 flex">
-                                    <div className='w-1/5'>
+                                <div className="my_credit my-2 sm:space-x-2 flex flex-col md:flex-row">
+                                    <div className='sm:w-1/5'>
                                         <label htmlFor="credit">Credit</label>
                                     </div>
                                     <input type="number" name='credit' id='my_credit' className='border-2 border-black px-4 py-2 rounded-md' />
                                 </div>
-                                <div className="my_tgp my-2 space-x-2 flex">
-                                    <div className='w-1/5'>
+                                <div className="my_tgp my-2 sm:space-x-2 flex flex-col md:flex-row">
+                                    <div className='sm:w-1/5'>
                                         <label htmlFor="tgp">TGP</label>
                                     </div>
                                     <input type="number" name='tgp' id='my_tgp' className='border-2 border-black px-4 py-2 rounded-md' />

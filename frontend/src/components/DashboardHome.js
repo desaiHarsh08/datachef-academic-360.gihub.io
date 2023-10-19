@@ -142,7 +142,10 @@ const DashboardHome = () => {
 
   const handleDownload = () => {
     downloadExcel(marksheetArr, 'exportedData.xlsx');
+    // downloadExcel(data, 'exportedData.xlsx');
   };
+
+  // const handleDownload =
 
   const handleStudentFilter = async () => {
 
@@ -183,7 +186,7 @@ const DashboardHome = () => {
           Course: student.course,
           Semester: student.semester,
           Name: student.name,
-          SGPA: student.sgpa,
+          SGPA: isNaN(student.sgpa)?'': student.sgpa,
           Remarks: student.remarks,
           Subject: student.subjects[j].subjectName,
           Year1: student.subjects[j].year1,
@@ -201,9 +204,10 @@ const DashboardHome = () => {
         };
 
         const isDuplicate = mymarksheetArr.some((item) => item.uniqueIdentifier === obj.uniqueIdentifier);
-
+        console.log('in loop, ', marksheetArr, isDuplicate, obj)
         if(!isDuplicate) {
           mymarksheetArr.push(obj);
+          console.log(marksheetArr)
           tmpArr.push(
             <div className='my_tr w-full flex border ' >
               <div className='border-r-2 font-medium  py-3 flex justify-center items-center w-[500px]'>
@@ -283,11 +287,16 @@ const DashboardHome = () => {
     setElementRow(tmpArr);
     setMarksheetArr(mymarksheetArr);
 
+    // handleDownload()
     console.log('Displaying List')
 
 
 
   }
+
+  useEffect(()=> {
+    console.log(marksheetArr)
+  }, [marksheetArr])
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -307,58 +316,35 @@ const DashboardHome = () => {
     <div className='w-full h-full flex flex-col gap-3 px-2 py-7'>
 
 
-      {loadingFlag ? <Loading /> : ''}
+      {loadingFlag===true ? <Loading /> : ''}
       <div id="row-1" className='w-full flex flex-col md:flex-row gap-3 md:flex-wra p   '>
         <div className="card w-full md:w-1/4  h-[125px] flex flex-col gap-3 justify-center items-center bg-red-500 text-white ">
           <h3 className='font-semibold text-4xl '>Total</h3>
-          <span className='text-2xl' >{stats?.totalMarksheetCount}</span>
+          <span className='text-2xl' >{stats? stats?.totalMarksheetCount: 0}</span>
         </div>
         <div className="card w-full md:w-1/4  h-[125px] flex flex-col justify-evenly p-2  bg-blue-500 text-white ">
           <h3 className='font-semibold text-2xl text-center '>BCOM</h3>
           <div className='flex'>
             <div className='border w-1/2 h-full flex flex-col items-center'>
               <h4 className='font-semibold text-xl  '>BCOM (H)</h4>
-              <span className='' >{stats?.bcom_honoursCount}</span>
+              <span className='' >{stats? stats?.bcom_honoursCount : 0}</span>
             </div>
             <div className='border w-1/2 h-full flex flex-col items-center'>
               <h4 className='font-semibold text-xl  '>BCOM (G)</h4>
-              <span className='' >{stats?.bcom_generalCount}</span>
+              <span className='' >{stats? stats?.bcom_generalCount : 0}</span>
             </div>
           </div>
         </div>
         <div className="card w-full md:w-1/4 border h-[125px] flex flex-col gap-3 justify-center items-center bg-green-500 text-white ">
           <h3 className='font-semibold text-4xl '>BA</h3>
-          <span className='text-2xl' >{stats?.baCount}</span>
+          <span className='text-2xl' >{stats? stats?.baCount : 0}</span>
         </div>
         <div className="card w-full md:w-1/4 border h-[125px] flex flex-col gap-3 justify-center items-center bg-yellow-400 text-white ">
           <h3 className='font-semibold text-4xl '>BSC</h3>
-          <span className='text-2xl' >{stats?.bscCount}</span>
+          <span className='text-2xl' >{stats? stats?.bscCount : 0}</span>
         </div>
       </div>
-      {/* <div id="row-2" className='w-full flex flex-col md:flex-row items-center  gap-10 md:gap-20 justify-center mt-20 md:mt-9 '>
-        <div>
-          <h3 className='text-3xl font-semibold'>Passing Status</h3>
-        </div>
-        <div className=' flex flex-wrap justify-center gap-7'>
-          <div className="circle w-[95px] h-[95px] rounded-full border-2 border-blue-500 flex flex-col justify-center items-center ">
-            <span className='font-semibold'>BCOM (H)</span>
-            <span className='text-blue-500 font-semibold'>57.89%</span>
-          </div>
-          <div className="circle w-[95px] h-[95px] rounded-full border-2 border-orange-500 flex flex-col justify-center items-center ">
-            <span className='font-semibold'>BCOM (G)</span>
-            <span className='text-orange-500 font-semibold'>57.89%</span>
-          </div>
-          <div className="circle w-[95px] h-[95px] rounded-full border-2 border-green-500 flex flex-col justify-center items-center ">
-            <span className='font-semibold'>BA</span>
-            <span className='text-green-500 font-semibold'>57.89%</span>
-          </div>
-          <div className="circle w-[95px] h-[95px] rounded-full border-2 border-yellow-500 flex flex-col justify-center items-center ">
-            <span className='font-semibold'>BSC</span>
-            <span className='text-yellow-500 font-semibold'>57.89%</span>
-          </div>
-        </div>
-
-      </div> */}
+      
 
       {/* Subject List Displayed */}
       <div id="row-3" className='w-full px-2 py-7'>
