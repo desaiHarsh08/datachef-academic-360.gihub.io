@@ -43,12 +43,12 @@ const SearchStudent = () => {
     });
     const data = await res.json();
     console.log(data);
-    setFdata(data)
+    
     if (data.error) {
       alert('Student data not found!');
       return;
     }
-
+    setFdata(data)
     // Get all cleared semesters
     let clearedSem = [];
     for (let i = 1; i <= 6; i++) {

@@ -179,6 +179,11 @@ const DashboardHome = () => {
       count +=1;
       console.log(count)
       for (let j = 0; j < student.subjects.length; j++) {
+        
+        // eslint-disable-next-line
+        const sgpa = isNaN(Number(student.sgpa))? 0 : (Number(student.sgpa)==0?0: Number(student.sgpa).toFixed(2))
+        console.log(sgpa, student.rollNo)
+
         let obj = {
           uniqueIdentifier: student.registrationNo + student.subjects[j].subjectName,
           "Registration No.": student.registrationNo,
@@ -186,7 +191,7 @@ const DashboardHome = () => {
           Course: student.course,
           Semester: student.semester,
           Name: student.name,
-          SGPA: isNaN(student.sgpa)?'': student.sgpa,
+          SGPA: sgpa,
           Remarks: student.remarks,
           Subject: student.subjects[j].subjectName,
           Year1: student.subjects[j].year1,
@@ -226,7 +231,8 @@ const DashboardHome = () => {
                 <span>{student.name}</span>
               </div>
               <div className='border-r-2 font-medium  py-3 flex justify-center items-center w-[500px]'>
-                <span>{student.sgpa}</span>
+              {/* eslint-disable-next-line */}
+                <span>{isNaN(Number(student.sgpa))? 0 : (Number(student.sgpa)==0?0: Number(student.sgpa).toFixed(2))}</span>
               </div>
               <div className='border-r-2 font-medium  py-3 flex justify-center items-center w-[500px]'>
                 <span>{student.remarks}</span>
