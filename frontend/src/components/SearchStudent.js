@@ -20,6 +20,7 @@ const SearchStudent = () => {
     cleared: [],
     not_cleared: [],
   });
+  // eslint-disable-next-line
   const [notClearedRow, setNotClearedRow] = useState([]);
   const [search, setSearch] = useState({
     rollNo: '171017-22-0013'
@@ -78,6 +79,7 @@ const SearchStudent = () => {
 
     let tmpArr = [];
     for (let i = 0; i < allSem.length; i++) {
+      // eslint-disable-next-line
       let sem = '';
       // if (allSem[i] === 1) { sem = 'I'; }
       // if (allSem[i] === 2) { sem = 'II'; }
