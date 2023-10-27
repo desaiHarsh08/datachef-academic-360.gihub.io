@@ -33,7 +33,7 @@ function App() {
           <Route exact path="delete" element={<DeleteStudent />} />
           <Route exact path="settings" element={<Settings />} />
         </Route>
-        <Route exact path="/edit" element={<EditStudent />} />
+        <Route exact path="/view" element={<EditStudent />} />
       </Routes>
     </Router>
   );

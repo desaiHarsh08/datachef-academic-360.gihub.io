@@ -26,84 +26,89 @@ const EditStudent = () => {
     // console.log()
     setMyData(obj);
 
-    console.log(handleRows(obj.subjects))
+    // console.log(handleRows(obj.subjects))
+    const rows = handleRows(obj.subjects);
+    setRows(rows);
 
     setSubjects(obj.subjects);
     console.log(subjects)
 
 
 // eslint-disable-next-line
-  }, []);
+  }, [obj.subjects]);
 
 
 
 
 
-  const handleRows = (arr) => {
-    // for (let i = 0; i < subjects.length; i++) {
+  const handleRows = () => {
+    const arr = []
+    console.log(arr)
+    for (let i = 0; i < subjects?.length; i++) {
 
-    //   const handleChange = (event, i, propertyName) => {
-    //     const updatedSubjects = [...subjects];
-    //     updatedSubjects[i][propertyName] = event.target.value;
-    //     setSubjects(updatedSubjects);
-    //     console.log( event.target.value, subjects)
+      const handleChange = (event, i, propertyName) => {
+        const updatedSubjects = [...subjects];
+        updatedSubjects[i][propertyName] = event.target.value;
+        setSubjects(updatedSubjects);
+        console.log( event.target.value, subjects)
 
-    //   };
+      };
 
-    //   arr.push(
-    //     <div className='my_tr w-full ' key={i}>
-    //       <div className="fields w-full flex justify-cente r gap-1">
-    //         <div className='border-r  w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
-    //           <input type="text" name="subject" readOnly value={subjects[i].subjectName} placeholder='Subject' className='border text-center border-slate-800 w-full py-2 rounded-md' />
-    //         </div>
-    //         <div className='border-r  w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
-    //           <input 
-    //             type="number" 
-    //             name="fullMarks" 
-    //             value={subjects[i].fullMarks} 
-    //             onChange={(event)=>{ handleChange(event, i, 'fullMarks') }} 
-    //             id="full_marks" 
-    //             placeholder='Full Marks' 
-    //             className='border text-center border-slate-800 w-full py-2 rounded-md' 
-    //           />
-    //         </div>
-    //         <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
-    //           <input type="number" name="year1" value={subjects[i].year1}  placeholder='Year' className='border text-center border-slate-800 w-full py-2 rounded-md' />
-    //         </div>
-    //         <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
-    //           <input type="number" name="internalMarks" value={subjects[i].internalMarks}  placeholder='Internal Marks' className='border text-center border-slate-800 w-full py-2 rounded-md' />
-    //         </div>
-    //         {subjects[i]?.practicalMarks && <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
-    //           <input type="number" name="internalMarks" value={subjects[i].practicalMarks}  placeholder='Internal Marks' className='border text-center border-slate-800 w-full py-2 rounded-md' />
-    //         </div>}
-    //         <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
-    //           <input type="number" name="year2" value={subjects[i].year2}  placeholder='Year2' className='border text-center border-slate-800 w-full py-2 rounded-md' />
-    //         </div>
-    //         <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
-    //           <input type="number" name="theoryMarks" value={subjects[i].theoryMarks}  placeholder='Theory Marks' className='border text-center border-slate-800 w-full py-2 rounded-md' />
-    //         </div>
-    //         <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
-    //           <input type="number" name="total" value={subjects[i].total}  placeholder='Total' className='border text-center border-slate-800 w-full py-2 rounded-md' />
-    //         </div>
-    //         <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
-    //           <input type="text" name="letterGrade" value={subjects[i].letterGrade}  placeholder='Grade' className='border text-center border-slate-800 w-full py-2 rounded-md' />
-    //         </div>
-    //         <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
-    //           <input type="number" name="ngp"  value={subjects[i].ngp}  placeholder='NGP' className='border text-center border-slate-800 w-full py-2 rounded-md' />
-    //         </div>
-    //         <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
-    //           <input type="number" name="credit" value={subjects[i].credit}  placeholder='Credit' className='border text-center border-slate-800 w-full py-2 rounded-md' />
-    //         </div>
-    //         <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
-    //           <input type="number" name="tgp" id="tgp" value={subjects[i].tgp}  placeholder='TGP' className='border text-center border-slate-800 w-full py-2 rounded-md' />
-    //         </div>
-    //       </div>
-    //     </div>
-    //   );
-    // }
+      arr.push(
+        <div className='my_tr w-full ' key={i}>
+          <div className="fields w-full flex justify-cente r gap-1">
+            <div className='border-r  w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
+              <input type="text" name="subject" readOnly value={subjects[i]?.subjectName} placeholder='Subject' className='border text-center border-slate-800 w-full py-2 rounded-md' />
+            </div>
+            <div className='border-r  w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
+              <input 
+                type="number" 
+                name="fullMarks" 
+                value={subjects[i]?.fullMarks} 
+                onChange={(event)=>{ handleChange(event, i, 'fullMarks') }} 
+                id="full_marks" 
+                placeholder='Full Marks' 
+                className='border text-center border-slate-800 w-full py-2 rounded-md' 
+              />
+            </div>
+            <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
+              <input type="number" name="year1" value={subjects[i]?.year1}  placeholder='Year' className='border text-center border-slate-800 w-full py-2 rounded-md' />
+            </div>
+            <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
+              <input type="number" name="internalMarks" value={subjects[i]?.internalMarks}  placeholder='Internal Marks' className='border text-center border-slate-800 w-full py-2 rounded-md' />
+            </div>
+           <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
+              <input type="number" name="internalMarks" value={subjects[i]?.practicalMarks}  placeholder='Internal Marks' className='border text-center border-slate-800 w-full py-2 rounded-md' />
+            </div>
+            <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
+              <input type="number" name="year2" value={subjects[i]?.year2}  placeholder='Year2' className='border text-center border-slate-800 w-full py-2 rounded-md' />
+            </div>
+            <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
+              <input type="number" name="theoryMarks" value={subjects[i]?.theoryMarks}  placeholder='Theory Marks' className='border text-center border-slate-800 w-full py-2 rounded-md' />
+            </div>
+            <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
+              <input type="number" name="total" value={subjects[i]?.total}  placeholder='Total' className='border text-center border-slate-800 w-full py-2 rounded-md' />
+            </div>
+            <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
+              <input type="text" name="letterGrade" value={subjects[i]?.letterGrade}  placeholder='Grade' className='border text-center border-slate-800 w-full py-2 rounded-md' />
+            </div>
+            <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
+              <input type="number" name="ngp"  value={subjects[i]?.ngp}  placeholder='NGP' className='border text-center border-slate-800 w-full py-2 rounded-md' />
+            </div>
+            <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
+              <input type="number" name="credit" value={subjects[i]?.credit}  placeholder='Credit' className='border text-center border-slate-800 w-full py-2 rounded-md' />
+            </div>
+            <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
+              <input type="number" name="tgp" id="tgp" value={subjects[i]?.tgp}  placeholder='TGP' className='border text-center border-slate-800 w-full py-2 rounded-md' />
+            </div>
+          </div>
+        </div>
+      );
+    }
 
     // setRows(arr);
-    // console.log(rows)
+    console.log(rows)
+    return arr;
 
     // arr = subjects;
     // console.log(arr)
@@ -233,14 +238,13 @@ const EditStudent = () => {
               <div className="my_thead border-2 w-full flex gap-1 border-black ">
                 <div className='border-r-2 w-[8%] py-2 flex justify-center items-center border-black'><span className='font-bold'>Subject</span></div>
                 <div className='border-r-2 w-[8%] py-2 flex justify-center items-center border-black'><span className='font-bold'>Full Marks</span></div>
-                <div className='border-r-2 w-[8%] py-2 flex justify-center items-center border-black'><span className='font-bold'>Year</span></div>
+                <div className='border-r-2 w-[8%] py-2 flex justify-center items-center border-black'><span className='font-bold'>Year1</span></div>
                 <div className='border-r-2 w-[8%] py-2 flex justify-center items-center border-black'><span className='font-bold'>Internal M</span></div>
 
-                {
-                  myData?.stream !== 'bcom' &&
+                
                   <div className='border-r-2 w-[8%] py-2 flex justify-center items-center border-black'><span className='font-bold'>Practical M</span></div>
-                }
-                <div className='border-r-2 w-[8%] py-2 flex justify-center items-center border-black'><span className='font-bold'>Year</span></div>
+                
+                <div className='border-r-2 w-[8%] py-2 flex justify-center items-center border-black'><span className='font-bold'>Year2</span></div>
                 <div className='border-r-2 w-[8%] py-2 flex justify-center items-center border-black'><span className='font-bold'>Theory M</span></div>
                 <div className='border-r-2 w-[8%] py-2 flex justify-center items-center border-black'><span className='font-bold'>Total</span></div>
                 <div className='border-r-2 w-[8%] py-2 flex justify-center items-center border-black'><span className='font-bold'>Grade</span></div>

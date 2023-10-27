@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import SemesterRow from './SemesterRow';
 import { useNavigate } from 'react-router-dom';
-
+import * as XLSX from 'xlsx';
 
 const SearchStudent = () => {
 
@@ -22,8 +22,8 @@ const SearchStudent = () => {
   });
   const [notClearedRow, setNotClearedRow] = useState([]);
   const [search, setSearch] = useState({
-    rollNo: '171017-22-0013',
-    registrationNo: '017-1111-3622-17'
+    rollNo: '171017-22-0013'
+    // registrationNo: '017-1111-3622-17'
   });
 
 
@@ -79,18 +79,26 @@ const SearchStudent = () => {
     let tmpArr = [];
     for (let i = 0; i < allSem.length; i++) {
       let sem = '';
-      if (allSem[i] === 1) { sem = 'I'; }
-      if (allSem[i] === 2) { sem = 'II'; }
-      if (allSem[i] === 3) { sem = 'III'; }
-      if (allSem[i] === 4) { sem = 'IV'; }
-      if (allSem[i] === 5) { sem = 'V'; }
-      if (allSem[i] === 6) { sem = 'VI'; }
+      // if (allSem[i] === 1) { sem = 'I'; }
+      // if (allSem[i] === 2) { sem = 'II'; }
+      // if (allSem[i] === 3) { sem = 'III'; }
+      // if (allSem[i] === 4) { sem = 'IV'; }
+      // if (allSem[i] === 5) { sem = 'V'; }
+      // if (allSem[i] === 6) { sem = 'VI'; }
 
       // Fetch semester wise object from data
       let obj = fetchBySem(data.all_sem, allSem[i]);
+      console.log(obj)
+      // if (obj.semester === 1) { sem = 'I'; }
+      // if (obj.semester === 2) { sem = 'II'; }
+      // if (obj.semester === 3) { sem = 'III'; }
+      // if (obj.semester === 4) { sem = 'IV'; }
+      // if (obj.semester === 5) { sem = 'V'; }
+      // if (obj.semester === 6) { sem = 'VI'; }
+      
       tmpArr.push(
-        <SemesterRow sem={sem} key={i} obj={obj} />
-      )
+        <SemesterRow sem={obj.semester} key={i} obj={obj} />
+      );
       setSemesterRows(tmpArr);
     }
 
@@ -113,6 +121,7 @@ const SearchStudent = () => {
 
         // Fetch semester wise object from data
         let obj = fetchBySem(data.not_cleared, data.not_cleared[i]);
+        if(obj === null || obj === undefined) { continue; }
         tmpArr.push(
           <SemesterRow sem={sem} key={i} obj={obj} />
         )
@@ -140,6 +149,19 @@ const SearchStudent = () => {
     return null;
   }
 
+
+  function downloadExcel(data, fileName) {
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+    XLSX.writeFile(workbook, fileName);
+  }
+
+  const handleDownload = () => {
+    downloadExcel(fdata.all_sem, `${fdata.all_sem[0].rollNo}.xlsx`);
+    // downloadExcel(data, 'exportedData.xlsx');
+  };
+
   return (
     <>
 
@@ -159,14 +181,14 @@ const SearchStudent = () => {
                   <input type="text" name="rollNo" value={search.rollNo} onChange={handleChange} id="roll_no" className='w-full border-2 border-slate-700 px-4 py-1 rounded-md' />
                 </div>
               </div>
-              <div id="registrationno-field" className='flex gap-3 flex-col sm:flex-row w-full sm:items-center  sm:my-1 '>
+              {/* <div id="registrationno-field" className='flex gap-3 flex-col sm:flex-row w-full sm:items-center  sm:my-1 '>
                 <div className=''>
                   <label htmlFor="name">Registration No.</label>
                 </div>
                 <div>
                   <input type="text" name="registrationNo" value={search.registrationNo} onChange={handleChange} id="registration_no" className='w-full border-2 border-slate-700 px-4 py-1 rounded-md' />
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <hr className='my-9 border-slate-300' />
@@ -243,8 +265,12 @@ const SearchStudent = () => {
                 </div>
               </div>
 
+              <div>
+                <button onClick={handleDownload} disabled={fdata.all_sem.length===0} className='px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600'>Download</button>
+              </div>
+
               {/* Not cleared */}
-              {fdata?.not_cleared.length !== 0 ? <div className="row w-full">
+              {/* {fdata?.not_cleared.length !== 0 ? <div className="row w-full">
                 <h3 className='text-xl font-medium my-2'>Backlogs</h3>
                 <div className="my_table  w-full">
                   <div className="my_thead border-2 w-full flex justify-around border-black ">
@@ -264,7 +290,7 @@ const SearchStudent = () => {
                     {notClearedRow}
                   </div>
                 </div>
-              </div> : ''}
+              </div> : ''} */}
 
             </div>
 

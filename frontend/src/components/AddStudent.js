@@ -571,15 +571,15 @@ const AddStudent = () => {
                         </div>
                         <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
                             {/* <input type="number" name="credit" value={0} placeholder='Credit' className='border text-center border-slate-800 w-full py-2 rounded-md' /> */}
-                            todo
+                            {tmpObj.subjects[i].credit}
                         </div>
                         <div className='border-r w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
                             {/* <input type="number" name="tgp" placeholder='TGP' value={0} className='border text-center border-slate-800 w-full py-2 rounded-md' /> */}
-                            todo
+                            {tmpObj.subjects[i].tgp}
                         </div>
                         <div className='w-[8%] pr-1 py-2 flex justify-center items-center border-slate-400'>
                             {/* <input type="text" name="status" value={'todo'} placeholder='Status' className='border text-center border-slate-800 w-full py-2 rounded-md' /> */}
-                            todo
+                            
                         </div>
                     </div>
                     <div>

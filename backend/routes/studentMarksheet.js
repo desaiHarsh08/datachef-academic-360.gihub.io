@@ -587,10 +587,10 @@ router.post('/add-multiple-marksheet', fetchuser, async (req, res) => {
 
 // ROUTE 6: Get all semester marksheet for the particular student using: POST "/api/student/search". Login required
 router.post('/search', fetchuser, async (req, res) => {
-    const { rollNo, registrationNo } = req.body;
+    const { rollNo } = req.body;
 
-    if (rollNo === null || registrationNo === null) {
-        return res.status(400).json({ error: "Please provide rollNo, registrationNo, and semester!" });
+    if (rollNo === null) {
+        return res.status(400).json({ error: "Please provide rollNo!" });
     }
 
     let marksheetsObj = {
@@ -599,7 +599,7 @@ router.post('/search', fetchuser, async (req, res) => {
     };
 
 
-    let studentMarksheetArr = await StudentMarksheet.find({ rollNo, registrationNo });
+    let studentMarksheetArr = await StudentMarksheet.find({ rollNo });
 
     if (studentMarksheetArr.length === 0) {
         return res.status(404).json({ error: "Student data not found!" });

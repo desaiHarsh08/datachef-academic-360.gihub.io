@@ -6,8 +6,9 @@ const SemesterRow = (props) => {
     const [myData, setMyData] = useState({});
     const [myFullMarks, setMyFullMarks] = useState(0);
     const [myMarksObtained, setMyMarksObtained] = useState(0);
+    const [myLetterGrade, setMyLetterGrade] = useState('');
 
-console.log(props.obj.year)
+console.log(props.obj)
 
 
 
@@ -67,14 +68,28 @@ console.log(props.obj.year)
     
             // Calculate marks obtained
             let prc = isNaN(props.obj.subjects[i]?.practicalMarks) ? 0 : props.obj.subjects[i]?.practicalMarks;
-            marksObtained += props.obj.subjects[i]?.internalMarks + props.obj.subjects[i]?.theoryMarks + prc;
+            let im = isNaN(props.obj.subjects[i]?.internalMarks) ? 0 : props.obj.subjects[i]?.internalMarks;
+            let tm = isNaN(props.obj.subjects[i]?.theoryMarks) ? 0 : props.obj.subjects[i]?.theoryMarks;
+            marksObtained += im + tm + prc;
         }
     
         // Check if the values are different before updating state
-        if (fullMarksSum !== myFullMarks || marksObtained !== myMarksObtained) {
+        // if (fullMarksSum !== myFullMarks || marksObtained !== myMarksObtained) {
             setMyFullMarks(fullMarksSum);
             setMyMarksObtained(marksObtained);
-        }
+
+            let percent = (marksObtained * 100)/fullMarksSum;
+            if (percent >= 90 && percent <= 100) { setMyLetterGrade("A++") }
+            if (percent >= 80 && percent < 90) { setMyLetterGrade("A+") }
+            if (percent >= 70 && percent < 80) { setMyLetterGrade("A") }
+            if (percent >= 60 && percent < 70) { setMyLetterGrade("B+") }
+            if (percent >= 50 && percent < 60) { setMyLetterGrade("B") }
+            if (percent >= 40 && percent < 50) { setMyLetterGrade("C+") }
+            if (percent >= 30 && percent < 40) { setMyLetterGrade("C") }
+            if (percent >= 0 && percent < 30) { setMyLetterGrade("F") }
+
+        // }
+
     
         // Update myData
         setMyData({
@@ -93,12 +108,12 @@ console.log(props.obj.year)
             totalCredit: props.obj.totalCredit,
             subjects: props.obj.subjects,
         });
-    }, [props.obj, myFullMarks, myMarksObtained]);
+    }, [props.obj, myFullMarks, myMarksObtained, myLetterGrade]);
     
 
     const handleEdit =()=> {
         localStorage.setItem('obj', JSON.stringify(myData));
-        window.open('/edit', '_blank');
+        window.open('/view', '_blank');
     }
 
 
@@ -127,23 +142,23 @@ console.log(props.obj.year)
                 {/* {console.log(props.sem)} */}
 
                 <div className={`border-r w-[10%] pr-1 py-2 flex justify-center items-center border-slate-400  `}>
-                    <div className={`w-full ${props.sem !== 'VI' ? 'invisible' : ''} `} >
+                    <div className={`w-full ${props.obj.semester !== 6 ? 'invisible' : ''} `} >
 
                         <input type="text" name="cummulative_credit" id="cummulative_credit" readOnly defaultValue={myData.totalCredit} placeholder='Cummulative Credit' className='border text-center border-slate-800 w-full py-2 rounded-md' />
                     </div>
                 </div>
                 <div className={`border-r w-[10%] pr-1 py-2 flex justify-center items-center border-slate-400 `}>
-                    <div className={`w-full ${props.sem !== 'VI' ? 'invisible' : ''} `} >
-                        <input type="text" name="p_cgpa" id="p_cgpa" placeholder='CGPA' readOnly defaultValue={isNaN(myData.cgpa)?' ':myData.cgpa} className='border text-center border-slate-800 w-full py-2 rounded-md' />
+                    <div className={`w-full ${props.obj.semester !== 6 ? 'invisible' : ''} `} >
+                        <input type="text" name="p_cgpa" id="p_cgpa" placeholder='CGPA' readOnly defaultValue={isNaN(Number(myData.cgpa))? ' ': Number(myData.cgpa)>3?Number(myData.cgpa):' ' } className='border text-center border-slate-800 w-full py-2 rounded-md' />
                     </div>
                 </div>
                 <div className={`border-r w-[10%] pr-1 py-2 flex justify-center items-center border-slate-400  `}>
-                    <div className={`w-full ${props.sem !== 'VI' ? 'invisible' : ''} `} >
-                        <input type="text" name="p_letter_grade" id="p_letter_grade" readOnly defaultValue={''} placeholder='Letter Grade' className='border text-center border-slate-800 w-full py-2 rounded-md' />
+                    <div className={`w-full ${props.obj.semester !== 6 ? 'invisible' : ''} `} >
+                        <input type="text" name="p_letter_grade" id="p_letter_grade" readOnly defaultValue={myLetterGrade} placeholder='Letter Grade' className='border text-center border-slate-800 w-full py-2 rounded-md' />
                     </div>
                 </div>
                 <div className={`border-r w-[10%] pr-1 py-2 flex justify-center items-center border-slate-400  `}>
-                    <div className={`w-full ${props.sem !== 'VI' ? 'invisible' : ''} `} >
+                    <div className={`w-full ${props.obj.semester !== 6 ? 'invisible' : ''} `} >
                         <input type="text" name="remarks" id="remarks" placeholder='Remarks' readOnly defaultValue={props.obj.remarks.toString()} className='border text-center border-slate-800 w-full py-2 rounded-md' />
                     </div>
                 </div>
